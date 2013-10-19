@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
 
-  before_filter :set_organization, only: [:edit,:update, :destroy] 
+  before_filter :set_organization, only: [:edit,:update, :destroy]
   before_filter only: [:edit,:update, :destroy] do |c| c.send(:authorize, params[:id])   end
 
   # GET /organizations/new
