@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     organization = Organization.find_by_email(params[:email])
     if organization and organization.authenticate(params[:password])
       session[:organization_id] = organization.id
-      redirect_to root_url, notice: 'Logged in!'
+      redirect_to root_url, notice: 'Welcome Back! :)'
     else
       flash.now.alert = "Email or password is Invalid"
       render 'new'
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:organization_id] = nil
-    redirect_to root_url, notice:"Logged out!"
+    redirect_to root_url, notice:"Logged out"
   end
 
 end

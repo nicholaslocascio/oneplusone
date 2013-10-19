@@ -8,13 +8,20 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in
-    !@current_organization.nil?
+    !current_organization.nil?
   end
 
   helper_method :logged_in
   helper_method :current_organization
 
-  def authorize
-    redirect_to login_path, alert:"Not Authorized- Please Login." if current_organization.nil?
+  def authorize(id)
+    unless logged_in
+      redirect_to login_path, alert:"Not Authorized- Please Login."
+    end
+    unless current_organization.id == id
+      redirect_to root_path, alert:"Not Authorized- Please Login."
+    end
   end
+
+
 end

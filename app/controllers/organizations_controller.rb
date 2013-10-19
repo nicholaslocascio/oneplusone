@@ -1,28 +1,32 @@
 class OrganizationsController < ApplicationController
 
-  before_filter :authorize, only: [:edit,:update]
+  before_filter :set_organization, only: [:edit,:update, :destroy] 
+  before_filter only: [:edit,:update, :destroy] do |c| c.send(:authorize, params[:id])   end
 
   # GET /organizations/new
   # GET /organizations/new.json
   def new
+    redirect_to root_url unless current_organization.nil?
     @organization = Organization.new
   end
 
   # GET /organizations/1/edit
   def edit
-    @organization = Organization.find(params[:id])
+    
   end
 
   def home
     if logged_in
       render action: "dashboard"
     else
-      @organization = Organization.new
-      render action: "new"
+      render action: "landing"
     end
   end
 
   def dashboard
+  end
+
+  def landing
   end
 
   # POST /organizations
@@ -55,8 +59,11 @@ class OrganizationsController < ApplicationController
   def destroy
     @organization = Organization.find(params[:id])
     @organization.destroy
+    session[:organization_id] = nil
+    redirect_to root_path, notice: "Organization Deleted."
+  end
 
-      redirect_to organizations_url
-      head :no_content
+  def set_organization
+    @organization = Organization.find(params[:id])
   end
 end
