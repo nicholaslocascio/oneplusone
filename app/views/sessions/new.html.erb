@@ -1,0 +1,31 @@
+  <div class="row">
+    <div class="col-md-5 well center">
+  <%= form_tag login_path %>
+
+    <% flash.each do |name, msg| %>
+    <div class='alert alert-dismissable alert-danger'>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= msg.to_s %>
+    </div>
+    <% end %>
+
+    <legend class="organization-form-legend">Log in to1+1!</legend>
+
+    <div class="field">
+      <%= text_field_tag :email, params[:email] , class: "form-control", :placeholder => :email %>
+    </div>
+
+    <div class="field">
+      <%= password_field_tag :password, nil, class: "form-control", :placeholder => :password %>
+    </div>
+
+    <div class="actions">
+      <%= submit_tag 'Sign In', class: "btn btn-lg btn-info btn-block"%>
+    </div>
+
+      <label class="checkbox">
+        <input type="checkbox" name="remember" value="1"> Remember Me
+    </label>
+
+   </div>
+  </div>
