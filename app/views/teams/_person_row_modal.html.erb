@@ -1,18 +1,20 @@
+<tr data-personId="<%= person.id %>">
+  <td><%= person.name %></td>
+  <td><%= person.email %></td>
+  <td>
+    <div class="btn-toolbar pull-right">
+      <%= form_tag add_person_to_team_path(id: @team.id, person_id: person.id), remote: true do %>
+      <% if not defined?(added) %>
+        <%= button_tag( :class => "btn btn-mini btn-success") do %>
+            <span class="glyphicon glyphicon-plus-sign"></span> Add
+        <% end %>
+        <% else %>
+          <%= button_tag( :class => "btn btn-mini btn-success", disabled: true) do %>
+              <span class="glyphicon glyphicon-plus-sign"></span> Added
+          <% end %>
+        <% end %>
 
-<tr>
-<td><%= person.name %></td>
-<td><%= person.email %></td>
-<td>
-  <div class="btn-toolbar pull-right">
-    <%= form_tag add_person_to_team_path(id: @team.id, person_id: person.id), remote: true do %>
-      <%= button_tag( :class => "btn btn-mini btn-success") do %>
-          <span class="glyphicon glyphicon-plus-sign"></span> Add
       <% end %>
-    <% end %>
-
-    <%= link_to '#', class: "btn btn-mini btn-success hidden", disabled: "disabled" do %>
-    <span class="glyphicon glyphicon-ok-sign"></span> Added
-    <% end %>
-  </div>
-</td>
+    </div>
+  </td>
 </tr>

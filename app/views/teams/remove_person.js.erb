@@ -1,1 +1,13 @@
-$("#peopleList").find('[data-person-id="<%= @deleted_id %>"]').remove();
+$(function() {
+  
+  $("#peopleList").find('[data-personId="<%= @person.id %>"]').remove();
+  var $personModalRow = $("#modalPeopleList").find('[data-personId="<%= @person.id %>"]');
+  var foundInModal = $personModalRow.length > 0;
+  if (!foundInModal) {
+    $("#modalPeopleList").prepend("<%= escape_javascript(render('person_row_modal', person: @person)) %>");
+  }
+  else {
+    $personModalRow.replaceWith("<%= escape_javascript(render('person_row_modal', person: @person)) %>");
+  }
+
+});

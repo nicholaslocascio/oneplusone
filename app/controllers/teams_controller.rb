@@ -26,9 +26,8 @@ class TeamsController < ApplicationController
   end
 
   def remove_person
-    person = Person.find(params[:person_id])
-    @deleted_id = person.id
-    @team.remove_person(person)
+    @person = Person.find(params[:person_id])
+    @team.remove_person(@person)
   end
 
   # GET /teams/1/edit
@@ -60,7 +59,7 @@ class TeamsController < ApplicationController
 
   # DELETE /teams/1
   def destroy
-    message = teamName.to_s + " Team Deleted."
+    message = @team.name.to_s + " Team Deleted."
     @team.destroy
     redirect_to teams_url, notice: message
   end

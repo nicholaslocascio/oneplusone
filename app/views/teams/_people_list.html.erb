@@ -5,12 +5,16 @@
     <th></th>
   </tr>
 </thead>
-<tbody>
-   <% people.each_with_index do |person| %>
-     <% if modal==true %>
-      <%= render 'person_row_modal', person: person%>
-     <% else %>
-      <%= render 'person_row', person: person %>
-     <% end %>
+   <% if modal == true %>
+   <tbody id= "modalPeopleList">
+      <% people.each_with_index do |person| %>
+        <%= render 'person_row_modal', person: person%>
+      <% end %>
+    </tbody>
+   <% else %>
+      <tbody id= "peopleList">
+      <% people.each_with_index do |person| %>
+        <%= render 'person_row', person: person%>
+      <% end %>
+    </tbody>
    <% end %>
-</tbody>

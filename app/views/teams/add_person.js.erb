@@ -1,1 +1,8 @@
-$("#peopleList").append("<%= escape_javascript(render('person_row', person: @person)) %>");
+$(function() {
+
+  var $personModalRow = $("#modalPeopleList").find('[data-personId="<%= @person.id %>"]');
+  $personModalRow.replaceWith("<%= escape_javascript(render('person_row_modal', person: @person, added: true)) %>");
+  console.log($("#modalPeopleList").length)
+  $("#peopleList").prepend("<%= escape_javascript(render('person_row', person: @person)) %>");
+
+});
