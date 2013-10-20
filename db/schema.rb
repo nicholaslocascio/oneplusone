@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131019191500) do
+ActiveRecord::Schema.define(:version => 20131020193818) do
 
   create_table "organizations", :force => true do |t|
     t.string   "name"
@@ -32,10 +32,8 @@ ActiveRecord::Schema.define(:version => 20131019191500) do
   add_index "pairings", ["week_id"], :name => "index_pairings_on_week_id"
 
   create_table "pairings_people", :id => false, :force => true do |t|
-    t.integer  "person_id"
-    t.integer  "pairing_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer "person_id"
+    t.integer "pairing_id"
   end
 
   add_index "pairings_people", ["pairing_id", "person_id"], :name => "index_pairings_people_on_pairing_id_and_person_id"
@@ -53,10 +51,8 @@ ActiveRecord::Schema.define(:version => 20131019191500) do
   add_index "people", ["organization_id"], :name => "index_people_on_organization_id"
 
   create_table "people_teams", :id => false, :force => true do |t|
-    t.integer  "person_id"
-    t.integer  "team_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer "person_id"
+    t.integer "team_id"
   end
 
   add_index "people_teams", ["person_id", "team_id"], :name => "index_people_teams_on_person_id_and_team_id", :unique => true

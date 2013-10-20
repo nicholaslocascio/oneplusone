@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
 
-  before_filter :set_team, only: [:show,:edit,:update, :destroy]
-  before_filter only: [:show, :edit, :update, :destroy] do |c| c.send(:authorize, @team.organization_id)   end
+  before_filter :set_team, only: [:show,:edit,:update, :destroy, :add_person, :remove_person]
+  before_filter only: [:show, :edit, :update, :destroy, :add_person, :remove_person] do |c| c.send(:authorize, @team.organization_id)   end
   before_filter :authorize_logged_in, only: [:index]
 
   # GET /teams
@@ -18,8 +18,24 @@ class TeamsController < ApplicationController
     @team = Team.new
   end
 
+
+# GET /teams/1/add_person/:person_id
+  def add_person
+    @person = Person.find(params[:person_id])
+    @team.add_person(@person)
+  end
+
+  def remove_person
+    person = Person.find(params[:person_id])
+    @deleted_id = person.id
+    @team.remove_person(person)
+  end
+
   # GET /teams/1/edit
   def edit
+    @members = @team.people.all
+    @people = current_organization.people.all
+    @people = @people.reject{ |e| @members.include? e }
   end
 
   # POST /teams

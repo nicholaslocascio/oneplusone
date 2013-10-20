@@ -1,0 +1,19 @@
+<tr data-person-id="<%= person.id %>">
+  <td><%= person.name %></td>
+  <td><%= person.email %></td>
+  <td>
+    <div class="btn-toolbar pull-right">
+
+      <%= link_to edit_person_path(person), class: "btn btn-medium btn-default" do %>
+      <span class="glyphicon glyphicon-pencil"></span> <span class="hidden-phone">Edit</span>
+      <% end %>
+
+    <%= form_tag remove_person_from_team_path(id: @team.id, person_id: person.id), remote: true, class: "inline" do %>
+      <%= button_tag( :class => "btn btn-mini btn-danger") do %>
+          <span class="glyphicon glyphicon-minus-sign"></span> Remove
+      <% end %>
+    <% end %>
+
+    </div>
+  </td>
+</tr>

@@ -14,6 +14,7 @@ class Organization < ActiveRecord::Base
   validates :password, length: {minimum: 5, maximum: 120}, on: :update, allow_nil: true
 
   has_many :teams
+  has_many :people
 
   def send_password_reset
     self.password_reset_token = generate_token
