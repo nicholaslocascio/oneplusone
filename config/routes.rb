@@ -1,10 +1,12 @@
 Oneplusone::Application.routes.draw do
 
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
+  resources :teams
 
+
+  resources :people
   resources :organizations
   resources :password_resets
+  
 
   get 'signup', to: 'organizations#new', as: 'signup'
   post 'signup', to: 'organizations#create', as: 'signup'

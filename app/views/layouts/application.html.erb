@@ -11,14 +11,8 @@
     <%= render partial: 'shared/site_header' %>
 
     <div class="container">
-      <% unless request.path == '/login' or request.path == '/signup'  %>
-      <% flash.each do |name, msg| %>
-        <div class='alert alert-dismissable alert-success'>
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <%= msg %>
-        </div>
-        <% end %>
-      <% end %>
+
+    <%= render partial: 'shared/flash', :locals => {:flash => flash} unless request.path == '/login' %>
       <%= yield %>
     </div>
 

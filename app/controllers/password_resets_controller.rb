@@ -2,10 +2,19 @@ class PasswordResetsController < ApplicationController
   def new
   end
 
+  def index
+    redirect_to new_password_reset_url
+  end
+
   def create
     organization = Organization.find_by_email(params[:email])
-    organization.send_password_reset if organization
-    redirect_to root_url, :notice => "Email sent with password reset instructions."
+    if organization
+      organization.send_password_reset if organization
+      redirect_to root_url, :notice => "Email sent with password reset instructions."
+    else
+      flash.now.alert = "No account for email address."
+      render :new
+    end
   end
 
   def edit

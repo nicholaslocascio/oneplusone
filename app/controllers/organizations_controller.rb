@@ -3,8 +3,8 @@ class OrganizationsController < ApplicationController
   before_filter :set_organization, only: [:edit,:update, :destroy]
   before_filter only: [:edit,:update, :destroy] do |c| c.send(:authorize, params[:id])   end
 
+
   # GET /organizations/new
-  # GET /organizations/new.json
   def new
     redirect_to root_url unless current_organization.nil?
     @organization = Organization.new
@@ -15,9 +15,10 @@ class OrganizationsController < ApplicationController
     
   end
 
+  # GET /
   def home
     if logged_in
-      render action: "dashboard"
+      redirect_to people_path
     else
       render action: "landing"
     end
@@ -30,7 +31,6 @@ class OrganizationsController < ApplicationController
   end
 
   # POST /organizations
-  # POST /organizations.json
   def create
     @organization = Organization.new(params[:organization])
 
@@ -43,7 +43,6 @@ class OrganizationsController < ApplicationController
   end
 
   # PUT /organizations/1
-  # PUT /organizations/1.json
   def update
     @organization = Organization.find(params[:id])
 
@@ -55,7 +54,6 @@ class OrganizationsController < ApplicationController
   end
 
   # DELETE /organizations/1
-  # DELETE /organizations/1.json
   def destroy
     @organization = Organization.find(params[:id])
     @organization.destroy

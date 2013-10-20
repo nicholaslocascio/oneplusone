@@ -23,6 +23,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+    def authorize
+      redirect_to login_path, alert:"Not Authorized- Please Login." unless logged_in
+    end
+
 
   def mailer_set_host_url
     ActionMailer::Base.default_url_options = {:host => request.host_with_port}

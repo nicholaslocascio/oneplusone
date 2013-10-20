@@ -1,17 +1,10 @@
       <div class="row">
+
     <div class="col-md-4 well center">
+      <%= render 'shared/form_errors', errors: @organization.errors %>
+
   <%= form_for @organization, url: signup_path do |f| %>
 
-    <% if @organization.errors.any? %>
-    <div class="alert alert-danger alert-dismissable">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <ul>
-          <% @organization.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
 
     <legend class="organization-form-legend">Sign Up for 1+1!</legend>
 
