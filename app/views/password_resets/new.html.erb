@@ -1,12 +1,14 @@
-<div class="row">
   <div class="col-md-4 well center">
     <%= form_tag password_resets_path, :method=> :post do %>
 
       <legend class="organization-form-legend">Forgot Password?</legend>
 
-      <div class="field">
+    <div class="field">
+      <div class="input-group">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
         <%= text_field_tag :email, params[:email], class: "form-control", :placeholder => :email %>
       </div>
+    </div>
 
       <div class="actions">
         <%= submit_tag 'Reset Password', class: "btn btn-lg btn-info btn-block" %>
@@ -15,4 +17,3 @@
       <% end %>
 
   </div>
-</div>

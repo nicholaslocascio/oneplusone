@@ -1,4 +1,6 @@
 class PasswordResetsController < ApplicationController
+
+
   def new
   end
 
@@ -27,7 +29,7 @@ def update
     redirect_to new_password_reset_path, :alert => "Password reset has expired."
   elsif @organization.update_attributes( params[:organization])
     session[:organization_id] = @organization.id
-    redirect_to root_url, :notice => "Password has been reset! Welcome Back! :)"
+    redirect_to teams_url, :notice => "Password has been reset! Welcome Back! :)"
   else
     render :edit
   end

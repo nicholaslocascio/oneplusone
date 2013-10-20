@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     organization = Organization.find_by_email(params[:email])
     if organization and organization.authenticate(params[:password])
       session[:organization_id] = organization.id
-      redirect_to root_url, notice: 'Welcome Back! :)'
+      redirect_to teams_url, notice: 'Welcome Back! :)'
     else
       flash.now.alert = "Email or password is Invalid"
       render 'new'

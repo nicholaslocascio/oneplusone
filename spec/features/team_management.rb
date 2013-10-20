@@ -14,14 +14,18 @@
 
         scenario 'delete a team' do
           login_with organization.email, organization.password
-          team_id = create_team(name)
+          team_id = FactoryGirl(:team)
           delete_team(team_id)
-          expect(current_path).to eq(login_path)
+          team = Teams.find(team_id)
+          expect(team).to eq(nil)
         end
 
         scenario 'edit a team' do
           login_with organization.email, ''
           team_id = create_team(name)
-          expect(current_path).to eq(login_path)
+          name2 = 'Bar Foo'
+          team_id = edit_team(name2)
+          team = Teams.find(team_id)
+          expect(team.name).to eq(name2)
         end
     end

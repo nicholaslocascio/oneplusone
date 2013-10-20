@@ -4,6 +4,7 @@ class OrganizationsController < ApplicationController
   before_filter only: [:edit,:update, :destroy] do |c| c.send(:authorize, params[:id])   end
 
 
+
   # GET /organizations/new
   def new
     redirect_to root_url unless current_organization.nil?
@@ -18,7 +19,7 @@ class OrganizationsController < ApplicationController
   # GET /
   def home
     if logged_in
-      redirect_to people_path
+      redirect_to teams_url
     else
       render action: "landing"
     end

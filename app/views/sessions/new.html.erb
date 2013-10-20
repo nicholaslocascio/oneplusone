@@ -1,5 +1,4 @@
-  <div class="row">
-    <div class="col-md-4 well center">
+    <div class="col-md-5 well center">
   <%= form_tag login_path %>
 
     <% flash.each do |name, msg| %>
@@ -11,13 +10,21 @@
 
     <legend class="organization-form-legend">Log in to1+1!</legend>
 
-    <div class="field">
+
+
+<div class="field">
+    <div class="input-group">
+      <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
       <%= text_field_tag :email, params[:email] , class: "form-control", :placeholder => :email %>
     </div>
+    </div>
 
-    <div class="field">
+<div class="field">
+    <div class="input-group">
+      <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
       <%= password_field_tag :password, nil, class: "form-control", :placeholder => :password %>
     </div>
+</div>
 
     <div class="actions">
       <%= submit_tag 'Login', class: "btn btn-lg btn-info btn-block"%>
@@ -27,4 +34,3 @@
     
 
    </div>
-  </div>

@@ -1,9 +1,6 @@
 Oneplusone::Application.routes.draw do
 
   resources :teams
-
-
-  resources :people
   resources :organizations
   resources :password_resets
   

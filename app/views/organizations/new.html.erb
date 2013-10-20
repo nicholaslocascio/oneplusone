@@ -1,6 +1,5 @@
-      <div class="row">
 
-    <div class="col-md-4 well center">
+    <div class="col-md-5 well center">
       <%= render 'shared/form_errors', errors: @organization.errors %>
 
   <%= form_for @organization, url: signup_path do |f| %>
@@ -9,11 +8,24 @@
     <legend class="organization-form-legend">Sign Up for 1+1!</legend>
 
     <div class="field">
-      <%= f.text_field :email, class: "form-control", :placeholder => :email %>
+      <div class="input-group">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+      <%= f.text_field :name, class: "form-control", :placeholder => :name %>
+      </div>
     </div>
 
     <div class="field">
+      <div class="input-group">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+        <%= f.text_field :email, class: "form-control", :placeholder => :email %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="input-group">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
       <%= f.password_field :password, class: "form-control", :placeholder => :password %>
+      </div>
     </div>
 
     <div class="actions">
@@ -23,4 +35,3 @@
   <% end %>
 
    </div>
-  </div>

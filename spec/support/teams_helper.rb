@@ -7,17 +7,22 @@ module TeamsHelper
     click_button 'Submit'
   end
   
-  def edit_team_with(id)
+  def edit_team_name(id, newName)
     visit teams_path
-    click_link 'Edit'
-    fill_in 'email', with: email
-    fill_in 'password', with: password
-    click_button 'Login'
+    click_link edit_teams_url(id)
+    fill_in 'name', with: newName
+    click_button 'Submit'
   end
+
+  # def edit_team_membership(teamId, memberId)
+  #   visit teams_path
+  #   click_link edit_teams_url(id)
+  # end
 
   def delete_team_with(id)
     visit teams_path
     click_button 'Delete'
+    click_button 'OK'
   end
   
 end

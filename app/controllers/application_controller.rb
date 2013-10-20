@@ -16,14 +16,15 @@ class ApplicationController < ActionController::Base
   helper_method :current_organization
 
   def authorize(org_id)
+
     if !logged_in
       redirect_to login_path, alert:"Not Authorized- Please Login."
-    elsif current_organization.id != org_id
-      redirect_to root_path, alert:"Action Not Authorized"
+    elsif current_organization.id.to_s != org_id.to_s
+      redirect_to teams_path, alert:"Action Not Authorized"
     end
   end
 
-    def authorize
+    def authorize_logged_in
       redirect_to login_path, alert:"Not Authorized- Please Login." unless logged_in
     end
 
