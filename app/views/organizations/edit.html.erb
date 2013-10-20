@@ -1,10 +1,22 @@
-<div class="container">
-<div class="col-md-6"
 
-<h1>Editing organization</h1>
+    <div class="col-md-5 well center">
+      <%= render 'shared/form_errors', errors: @organization.errors %>
+
+<h2>Organization Settings</h2>
 
 
+  <%= form_for @organization do |f| %>
+
+    <div class="field form-group">
+            <%= f.label :name%>
+      <%= f.text_field :name, class: "form-control", :placeholder => :name %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit class: "btn btn-lg btn-info btn-block", value: "Update" %>
+    </div>
+
+  <% end %>
 <%= link_to 'Show', @organization %> |
 <%= link_to 'Back', organizations_path %>
-</div>
-</div>
+   </div>

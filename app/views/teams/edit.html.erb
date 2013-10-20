@@ -1,6 +1,62 @@
-<h1>Editing team</h1>
+<div class="col-md-8 well center">
 
-<%= render 'form' %>
+<h2>Team Settings</h2>
+
+
+<%= render 'shared/form_errors', errors: @team.errors %>
+
+<div class="form-inline clearfix">
+<%= form_for(@team) do |f| %>
+
+    <div class="form-group">
+      <%= f.text_field :name, class: "form-control", :placeholder => :name %>
+    </div>
+
+    <%= f.submit class: "btn btn-info", value:"Update Name" %>
+<% end %>
+</div>
+
+<hr>
+
+
+<h2>Team Management</h2>
+
+  <!-- Table -->
+
+<table class="table clearfix">
+   <%= link_to new_team_path, class:"btn btn-success" do %>
+  <span class="glyphicon glyphicon-plus"></span> Add Member
+  <% end %>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Mark</td>
+              <td>@mdo</td>
+              <td>
+  <div class="btn-toolbar pull-right">
+      <%= link_to '/', class: "btn btn-medium btn-default" do %>
+      <span class="glyphicon glyphicon-pencil"></span> <span class="hidden-phone">Edit</span>
+      <% end %>
+
+      <%= link_to '/', :method => :delete, :confirm => 'You sure you want to remove this?', class: "btn btn-mini btn-danger" do %>
+      <span class="glyphicon glyphicon-minus-sign"></span> Remove
+        <% end %>
+    </div>
+  </td>
+            </tr>
+          </tbody>
+        </table>
+
 
 <%= link_to 'Show', @team %> |
 <%= link_to 'Back', teams_path %>
+
+</div>
