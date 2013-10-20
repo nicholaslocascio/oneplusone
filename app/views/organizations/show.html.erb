@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @organization.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @organization.email %>
+</p>
+
+<p>
+  <b>Paired count:</b>
+  <%= @organization.paired_count %>
+</p>
+
+<p>
+  <b>Unpaired count int:</b>
+  <%= @organization.unpaired_count_int %>
+</p>
+
+
+<%= link_to 'Edit', edit_organization_path(@organization) %> |
+<%= link_to 'Back', organizations_path %>

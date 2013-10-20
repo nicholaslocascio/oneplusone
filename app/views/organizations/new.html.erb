@@ -3,8 +3,8 @@
   <%= form_for @organization, url: signup_path do |f| %>
 
     <% if @organization.errors.any? %>
-<div class="alert alert-danger alert-dismissable">
-  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <ul>
           <% @organization.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -27,11 +27,7 @@
       <%= f.submit class: "btn btn-lg btn-info btn-block", value: "Sign Up" %>
     </div>
 
-      <label class="checkbox">
-        <input type="checkbox" name="remember" value="1"> Remember Me
-    </label>
   <% end %>
 
    </div>
   </div>
-

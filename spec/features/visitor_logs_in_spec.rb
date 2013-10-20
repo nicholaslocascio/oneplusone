@@ -3,24 +3,22 @@
 
   feature 'Visitor logs in' do
 
-      before do
-        signup_with 'valid@example.com', 'password'
-        logout
-      end
+      let(:organization) { FactoryGirl.create(:organization) }
+      let(:organization2) { FactoryGirl.create(:organization) }
 
       scenario 'with valid email and password' do
-          login_with 'valid@example.com', 'password'
+          login_with organization.email, organization.password
           expect(page).to have_content('Logout')
           expect(page).to have_content('Welcome Back!')
         end
 
         scenario 'with invalid email' do
           login_with 'invalid_email', 'password'
-          expect(page).to have_content('Login')
+          expect(current_path).to eq(login_path)
         end
 
         scenario 'with blank password' do
-          login_with 'valid@example.com', ''
-          expect(page).to have_content('Login')
+          login_with organization.email, ''
+          expect(current_path).to eq(login_path)
         end
     end

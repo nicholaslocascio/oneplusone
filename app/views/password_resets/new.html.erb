@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-md-4 well center">
+    <%= form_tag password_resets_path, :method=> :post do %>
+
+      <legend class="organization-form-legend">Forgot Password?</legend>
+
+      <div class="field">
+        <%= text_field_tag :email, '', class: "form-control", :placeholder => :email %>
+      </div>
+
+      <div class="actions">
+        <%= submit_tag 'Reset Password', class: "btn btn-lg btn-info btn-block" %>
+      </div>
+
+      <% end %>
+
+  </div>
+</div>

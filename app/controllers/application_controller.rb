@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :mailer_set_host_url
 
   private
 
@@ -22,5 +23,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
+  def mailer_set_host_url
+    ActionMailer::Base.default_url_options = {:host => request.host_with_port}
+  end
 
 end

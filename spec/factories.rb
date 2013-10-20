@@ -1,6 +1,8 @@
 FactoryGirl.define do
+
   factory :organization do
-    sequence(:email) { |n| "foo#{n}@example.com" }
-    password "foobar"
+    email {"user_#{rand(10000000).to_s}@factory.com" }
+    password "password"
   end
+
 end
