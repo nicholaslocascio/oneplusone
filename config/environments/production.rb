@@ -61,6 +61,25 @@ Oneplusone::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
+
+  # Do care if the mailer can't send
+  config.action_mailer.raise_delivery_errors = false
+
+  # Change mail delvery to either :smtp, :sendmail, :file, :test
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "herokuapp.com",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: 'oneplusonenjl',
+    password: 'RabbitRowDude36'
+  }
+
+  config.action_mailer.default_url_options = {:host => "herokuapp.com"}
+
+
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5

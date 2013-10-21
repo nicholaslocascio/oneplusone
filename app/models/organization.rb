@@ -16,6 +16,7 @@ class Organization < ActiveRecord::Base
   has_many :teams
   has_many :people
   has_many :weeks
+  has_many :pairings
 
   def send_password_reset
     self.password_reset_token = generate_token
