@@ -10,7 +10,7 @@ require 'faker'
 
 org = Organization.create!(:email => 'gibbons@initech.com',:name=> 'Initech', :password=> 'tpsreports1999')
 
-12.times do
+15.times do
   t = Team.create!(:name=> Faker::Company.name)
   org.teams << t
   org.save!
@@ -18,8 +18,12 @@ end
 
 90.times do |i|
   p = Person.create!(:email => Faker::Internet.email + i.to_s, :name=> Faker::Name.first_name + ' ' + Faker::Name.last_name)
-  team = org.teams.first(:offset => rand(org.teams.count))
-  org.people << p
+  rand(5).times do |j|
+    team = org.teams.first(:offset => rand(org.teams.count))
+    unless p.team_ids.include?(team.id)
+      org.people << p
+      team.add_person(p)
+    end
+  end
   org.save!
- team.add_person(p)
 end

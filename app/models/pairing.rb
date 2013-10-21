@@ -66,7 +66,7 @@ def self.best_match(person,eligible,week_number)
     week.pairs.each do | pair, i|
       personA = pair.people.first
       personB = pair.people.last 
-      if personA in past_pairings_count and personB in past_pairings_count
+      if past_pairings_count.has_key(personA) and past_pairings_count.has_key(personB)
         other_id = pair.people.first.id == person.id? pair.people.last.id : pair.people.first.id
       end
     end

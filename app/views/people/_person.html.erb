@@ -1,8 +1,7 @@
 <tr>
   <td><%= person.name %></td>
   <td><%= person.email %></td>
-  <td><%= person.paired_count.to_i %></td>
-  <td><%= person.paired_count.to_i + person.unpaired_count.to_i  %></td>
+    <td><%= person.teams.count %></td>
   <td>
     <div class="btn-toolbar pull-right">
       <%= link_to edit_person_path(person), class: "btn btn-medium btn-default" do %>
