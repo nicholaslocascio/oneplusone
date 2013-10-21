@@ -1,0 +1,19 @@
+<tr>
+  <td><%= person.name %></td>
+  <td><%= person.email %></td>
+  <td><%= person.paired_count.to_i %></td>
+  <td><%= person.paired_count.to_i + person.unpaired_count.to_i  %></td>
+  <td>
+    <div class="btn-toolbar pull-right">
+      <%= link_to edit_person_path(person), class: "btn btn-medium btn-default" do %>
+      <span class="glyphicon glyphicon-pencil"></span> <span>Edit</span>
+      <% end %>
+
+            <%= link_to person_path(person), :method => :delete, :confirm => 'You sure you want to delete ' + person.name.to_s + '?', class: "btn btn-mini btn-danger" do %>
+      <span class="glyphicon glyphicon-trash"></span>
+        <% end %>
+
+
+    </div>
+  </td>
+</tr>

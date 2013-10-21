@@ -20,5 +20,4 @@ Oneplusone::Application.routes.draw do
 
   root :to => 'organizations#home'
 
-  # See how all your routes lay out with "rake routes"
 end

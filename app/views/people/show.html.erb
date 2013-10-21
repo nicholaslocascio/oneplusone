@@ -11,13 +11,13 @@
 </p>
 
 <p>
-  <b>Paired count:</b>
-  <%= @person.paired_count %>
+  <b>Pairs Made:</b>
+  <%= @person.paired_count.to_i  %>
 </p>
 
 <p>
-  <b>Unpaired count:</b>
-  <%= @person.unpaired_count %>
+  <b>Weeks in Organization</b>
+  <%= @person.unpaired_count.to_i + @person.paired_count.to_i %>
 </p>
 
 

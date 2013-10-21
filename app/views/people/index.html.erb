@@ -1,29 +1,39 @@
-<h1>Listing people</h1>
+    <div class="col-md-10 center"> 
+  <h1>All People in <%= current_organization.name %></h1>
+</div>
+ 
+    <div class="col-md-10 well center">
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Paired count</th>
-    <th>Unpaired count</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @people.each do |person| %>
-  <tr>
-    <td><%= person.name %></td>
-    <td><%= person.email %></td>
-    <td><%= person.paired_count %></td>
-    <td><%= person.unpaired_count %></td>
-    <td><%= link_to 'Show', person %></td>
-    <td><%= link_to 'Edit', edit_person_path(person) %></td>
-    <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<table class="table clearfix">
+    <div class="form-inline">
+      <div class="form-group">
+       <%= link_to new_person_path, class:"btn btn-success pull-right" do %>
+        <span class="glyphicon glyphicon-plus"></span> Create Person
+      <% end %>
+        <div class="input-group col-md-8">
+          <input type="text" class="form-control" id="modal-filter" placeholder="Filter...">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+        </div>
+        </div>
+    </div>
+    <div>
 
-<br />
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Paired count</th>
+          <th>Weeks In</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+            <%= render partial: 'person', collection: @people %>
+      </tbody>
 
-<%= link_to 'New Person', new_person_path %>
+    </div>
+  </table>
+
+<br/>
+</div>

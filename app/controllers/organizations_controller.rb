@@ -19,7 +19,7 @@ class OrganizationsController < ApplicationController
   # GET /
   def home
     if logged_in
-      redirect_to teams_url
+      redirect_to people_path
     else
       render action: "landing"
     end
@@ -37,7 +37,7 @@ class OrganizationsController < ApplicationController
 
       if @organization.save
         session[:organization_id] = @organization.id
-        redirect_to root_path, notice: 'Organization ' + @organization.name.to_s + ' is now on 1+1!'
+        redirect_to people_path, notice: 'Thanks for signing up, ' + @organization.name.to_s + '!'
       else
         render action: "new"
       end
@@ -48,7 +48,7 @@ class OrganizationsController < ApplicationController
     @organization = Organization.find(params[:id])
 
       if @organization.update_attributes(params[:organization])
-        redirect_to @organization, notice: 'Organization was successfully updated.'
+        redirect_to people_path, notice: 'Organization was successfully updated.'
       else
         render action: "edit"
       end

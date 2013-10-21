@@ -1,5 +1,5 @@
 
-    <div class="col-md-5 well center">
+    <div class="col-md-5 well center well-spaced">
       <%= render 'shared/form_errors', errors: @organization.errors %>
 
   <%= form_for @organization, url: signup_path do |f| %>
@@ -10,7 +10,7 @@
     <div class="field">
       <div class="input-group">
         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-      <%= f.text_field :name, class: "form-control", :placeholder => :name %>
+      <%= f.text_field :name, class: "form-control", :placeholder => 'Company Name' %>
       </div>
     </div>
 

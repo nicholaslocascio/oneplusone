@@ -1,26 +1,18 @@
+<%= render 'shared/form_errors', errors: @person.errors %>
+
 <%= form_for(@person) do |f| %>
-  <% if @person.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
 
-      <ul>
-      <% @person.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+    <div class="field form-group">
+            <%= f.label :name%>
+      <%= f.text_field :name, class: "form-control", :placeholder => :name %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
+    <div class="field form-group">
+        <%= f.label :email %><br />
+      <%= f.text_field :email, class: "form-control", :placeholder => :email %>
+    </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-lg btn-info btn-block"%>
   </div>
 <% end %>

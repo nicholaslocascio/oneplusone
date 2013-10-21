@@ -1,14 +1,17 @@
 class PeopleController < ApplicationController
+
+  before_filter :set_person, only: [:show,:edit,:update, :destroy]
+  before_filter only: [:show, :edit, :update, :destroy] do |c| c.send(:authorize, @person.organization_id)   end
+  before_filter :authorize_logged_in, only: [:index, :new]
   # GET /people
   # GET /people.json
   def index
-    @people = Person.all
+    @people = current_organization.people.all
   end
 
   # GET /people/1
   # GET /people/1.json
   def show
-    @person = Person.find(params[:id])
   end
 
   # GET /people/new
@@ -28,7 +31,7 @@ class PeopleController < ApplicationController
     @person = Person.new(params[:person])
     current_organization.people << @person
       if @person.save
-        redirect_to @person, notice: 'Person was successfully created.'
+        redirect_to @person, notice: @person.name.to_s + ' was successfully created.'
       else
         render action: "new"
       end
@@ -37,7 +40,6 @@ class PeopleController < ApplicationController
   # PUT /people/1
   # PUT /people/1.json
   def update
-    @person = Person.find(params[:id])
 
       if @person.update_attributes(params[:person])
         redirect_to @person, notice: 'Person was successfully updated.'
@@ -54,4 +56,9 @@ class PeopleController < ApplicationController
 
     redirect_to people_url
   end
+
+  def set_person
+    @person = Person.find(params[:id])
+  end
+  
 end
