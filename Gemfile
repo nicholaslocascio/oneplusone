@@ -49,3 +49,4 @@ group :test do
 end
 
 gem 'faker'
+gem 'rails_12factor', group: :production
