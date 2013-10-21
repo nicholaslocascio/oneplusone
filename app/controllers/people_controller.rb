@@ -31,7 +31,7 @@ class PeopleController < ApplicationController
     @person = Person.new(params[:person])
     current_organization.people << @person
       if @person.save
-        redirect_to @person, notice: @person.name.to_s + ' was successfully created.'
+        redirect_to people_path, notice: @person.name.to_s + ' was successfully created.'
       else
         render action: "new"
       end
@@ -42,7 +42,7 @@ class PeopleController < ApplicationController
   def update
 
       if @person.update_attributes(params[:person])
-        redirect_to @person, notice: 'Person was successfully updated.'
+        redirect_to people_path, notice: @person.name.to_s + ' was successfully updated.'
       else
         render action: "edit"
       end

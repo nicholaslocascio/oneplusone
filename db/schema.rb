@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131020193818) do
+ActiveRecord::Schema.define(:version => 20131021013616) do
 
   create_table "organizations", :force => true do |t|
     t.string   "name"
@@ -65,5 +65,12 @@ ActiveRecord::Schema.define(:version => 20131020193818) do
   end
 
   add_index "teams", ["organization_id"], :name => "index_teams_on_organization_id"
+
+  create_table "weeks", :force => true do |t|
+    t.integer  "week_number"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "organization_id"
+  end
 
 end
