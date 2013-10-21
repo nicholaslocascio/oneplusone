@@ -41,31 +41,15 @@ class Pairing < ActiveRecord::Base
     while sorted_people.count > 1
       person = sorted_people.first
       potentialMatches = []
-      people_teammates_hash[person.id].each do |potential_id|
-        potentialMatches << Person.find(potential_id).first
+      people_teammates_hash[person.id].each do |key, value|
+        potentialMatches << Person.find(key)
       end
       match = self.best_match(person, potentialMatches, week_number)
       pair = self.create_pairing(person, match, organization, week_number)
       pairs_to_mail << pair
 
-      puts sorted_people.count
-            puts ' '
-
-      sorted_people = sorted_people.delete_if {|item| item.id.to_i == match.id } 
-      sorted_people.each do |ee|
-        puts ee.id
-      end
-      puts ' '
-
-      puts 'match = ' + match.id.to_s
-      #puts sorted_people.to_s
-      puts sorted_people.count
-      puts sorted_people.first.name
+      sorted_people = sorted_people.delete_if {|item| item.id.to_i == match.id.to_i }
       sorted_people.shift
-      puts sorted_people.first.name
-      puts sorted_people.count
-      puts ' '
-      puts people_teammates_hash.to_s
 
       people_teammates_hash = self.get_people_teammates_hash(sorted_people,teams)
       sorted_people = sorted_people.sort_by{|p| people_teammates_hash[p.id].count }
@@ -80,7 +64,7 @@ class Pairing < ActiveRecord::Base
     pairs.each_with_index do |pair, i|
       puts 'mailing ' + (i+1).to_s + " of " + pairs.count.to_s
       puts pair.people.first.name.to_s + ' is paired with ' + pair.people.last.name.to_s
-      #PairingMailer.mail_pairing(pair).deliver
+      PairingMailer.mail_pairing(pair).deliver
     end
   end
 
@@ -91,8 +75,8 @@ class Pairing < ActiveRecord::Base
     end
     teams.each do |team|
       people.each do |person|
-        people.each do |team_member|
-          hash[person.id][team_member.id] = true unless person.id == team_member.id
+        team.people.each do |team_member|
+          hash[person.id][team_member.id] = true if person.id != team_member.id and team_member.in?(people)
         end
       end
     end
@@ -105,12 +89,18 @@ def self.best_match(person, eligible, week_number)
 
   past_relationship_count = Hash.new
 
+  min_count = 9999999
+  min_match = eligible.first
+
   eligible.each do |potential|
-    past_relationship_count[person.id] = self.get_past_relationship_count(person,potential)
+    new_count = self.get_past_relationship_count(person,potential)
+    if new_count < min_count
+      new_count = min_count
+      min_match = potential
+    end
   end
 
-  sorted_eligible = eligible.sort_by{|p| past_relationship_count[p.id]}
-  return sorted_eligible.first
+  return min_match
 end
 
 end
