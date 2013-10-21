@@ -70,14 +70,14 @@ Oneplusone::Application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
-    domain: "herokuapp.com",
+    domain: "google.com",
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: 'oneplusonenjl',
     password: 'RabbitRowDude36'
   }
 
-  config.action_mailer.default_url_options = {:host => "herokuapp.com"}
+  config.action_mailer.default_url_options = {:host => "oneplusone-njl.herokuapp.com"}
 
 
   # Log the query plan for queries taking more than this (works
